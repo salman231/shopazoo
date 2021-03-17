@@ -279,7 +279,7 @@ require([
                     "keyboard": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/keyboard"); ?>,
                     "arrows": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/arrows"); ?>,
                     "allowfullscreen": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/allowfullscreen"); ?>,
-                    "showCaption": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/caption"); ?>,
+                    "showCaption": "<?php /* @escapeNotVerified */ echo $block->getVar("gallery/caption"); ?>",
                     "width": <?php /* @escapeNotVerified */ echo $image_width; ?>,
                     "thumbwidth": <?php /* @escapeNotVerified */ echo $thumb_width; ?>,
                     "thumbheight": <?php /* @escapeNotVerified */ echo $thumb_height; ?>,
@@ -296,8 +296,8 @@ require([
                     "nav": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/nav"); ?>",
                     "loop": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/loop"); ?>,
                     "navdir": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navdir"); ?>",
-                    "arrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/arrows"); ?>,
-                    "showCaption": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/caption"); ?>,
+                    "arrows": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/arrows"); ?>",
+                    "showCaption": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/caption"); ?>",
                     "transitionduration": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/transition/duration"); ?>,
                     "transition": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/transition/effect"); ?>"
                 },
@@ -313,7 +313,7 @@ require([
 ], function ($) {
     var loaded = false;
     $('.product.media .gallery-placeholder').bind("DOMSubtreeModified",function(){
-        $('.product.media .fotorama').on('fotorama:ready', function (e, fotorama, extra) { 
+        $('.product.media .fotorama').on('fotorama:ready', function (e, fotorama, extra) {
             loaded = false;
             $('.product.media .fotorama').on('fotorama:load', function (e, fotorama, extra) {
                 if(!loaded){
