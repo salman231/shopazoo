@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* @category   BSS
+* @package    Bss_AdminActionLog
+* @author     Extension Team
+* @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bss" translate="label" sortOrder="300">
+            <label>Bss Commerce</label>
+        </tab>
+        <section id="action_log_bss" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Admin Action Log</label>
+            <tab>bss</tab>
+            <resource>Bss_AdminActionLog::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Choose 'Yes' to enable module.<br>Version 1.0.2]]></comment>
+                </field>
+                <field id="clear_log" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Automatically Clear Action Logs after ... Days</label>
+                    <validate>validate-no-empty validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="groupaction" translate="label" sortOrder="350" showInDefault="1" showInWebsite="0" showInStore="0">
+                   <label>Enable Objects</label>
+                   <frontend_model>Bss\AdminActionLog\Block\Adminhtml\System\Config\GroupAction</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

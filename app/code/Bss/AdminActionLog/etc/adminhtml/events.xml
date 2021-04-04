@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* @category   BSS
+* @package    Bss_AdminActionLog
+* @author     Extension Team
+* @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_postdispatch">
+        <observer name="magento_logging" instance="Bss\AdminActionLog\Observer\Postdispatch" />
+    </event>
+    <event name="model_save_after">
+        <observer name="admin_action_log_save" instance="Bss\AdminActionLog\Observer\ModelSave" />
+    </event>
+    <event name="model_delete_after">
+        <observer name="admin_action_log_delete" instance="Bss\AdminActionLog\Observer\ModelDelete" />
+    </event>
+    <event name="model_load_after">
+        <observer name="admin_action_log_load" instance="Bss\AdminActionLog\Observer\ModelLoad" />
+    </event>
+    <event name="backend_auth_user_login_success">
+        <observer name="bss_login_log_success" instance="Bss\AdminActionLog\Observer\AdminLoginSuccess" />
+    </event>
+    <event name="backend_auth_user_login_failed">
+        <observer name="bss_login_log_failed" instance="Bss\AdminActionLog\Observer\AdminLoginFailed" />
+    </event>
+</config>

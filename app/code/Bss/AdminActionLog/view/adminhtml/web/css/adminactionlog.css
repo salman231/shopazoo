@@ -1,0 +1,126 @@
+.log-gid,.session-active-info {
+    font-size: 16px;
+    line-height: 20px;
+}
+.log-gid span.label, .session-active-info p label{
+    font-weight: bold;
+}
+table.view_details,table.page-visit-detail {
+    width: 100%;
+}
+table.view_details td {
+    padding: 8px 0px 8px 35px;
+}
+table.page-visit-detail td {
+    border: 1px solid #41362f;
+    padding: 10px;
+}
+table.view_details td:first-child {
+    padding-left: 10px;
+}
+table.view_details td.path {
+    width: 20%;
+}
+table.view_details td.oldvalue, table.view_details td.newvalue {
+    width: 40%;
+}
+table.view_details td.oldvalue p, table.view_details td.newvalue p {
+    word-wrap: break-word;
+    white-space: initial;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+table.view_details tbody td {
+    border: 1px solid #41362f;
+}
+table.view_details td.sourcedata {
+    text-align: center;
+}
+table.view_details th,table.page-visit-detail th {
+    text-align: center;
+    font-size: 14px;
+    background: #41362f;
+    color: #f7f3eb;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid #41362f;
+    border-right-color: #fff;
+}
+table.view_details th:last-child,table.page-visit-detail th:last-child {
+    border-right-color: #41362f;
+}.log-gid,.session-active-info {
+    font-size: 16px;
+    line-height: 20px;
+}
+.log-gid span.label, .session-active-info p.label{
+    font-weight: bold;
+}
+table.view_details,table.page-visit-detail {
+    width: 100%;
+}
+table.view_details td {
+    padding: 8px 30px;
+}
+table.page-visit-detail td {
+    border: 1px solid #41362f;
+    padding: 10px;
+}
+table.view_details td:first-child {
+    padding-left: 10px;
+}
+table.view_details td.path {
+    width: 20%;
+}
+table.view_details td.oldvalue, td.newvalue {
+    width: 40%;
+}
+table.view_details tbody td {
+    border: 1px solid #41362f;
+}
+table.view_details td.sourcedata {
+    text-align: center;
+}
+table.view_details th,table.page-visit-detail th {
+    text-align: center;
+    font-size: 14px;
+    background: #41362f;
+    color: #f7f3eb;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid #41362f;
+    border-right-color: #fff;
+}
+table.view_details th:last-child,table.page-visit-detail th:last-child {
+    border-right-color: #41362f;
+}
+table.view_details td.mess-diff {
+    text-align: center;
+    font-weight: 600;
+    font-size: 23px;
+}
+ins {
+    color:green;background:#dfd;
+    text-decoration:none
+}
+del {
+    color:red;background:#fdd;
+    text-decoration:none
+}
+.log-details {
+    position: relative;
+}
+
+.log-details a#revert {
+    position: absolute;
+    right: 0;
+    top: -60px;
+    height: 50px;
+    width: 135px;
+    font-size: 24px;
+    line-height: 34px;
+}

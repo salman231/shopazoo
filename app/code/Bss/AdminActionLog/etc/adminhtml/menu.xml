@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* @category   BSS
+* @package    Bss_AdminActionLog
+* @author     Extension Team
+* @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bss_AdminActionLog::log" title="Admin Action Log" translate="title" module="Bss_AdminActionLog" sortOrder="15" resource="Bss_AdminActionLog::log"
+            />
+        <!-- START: new node -->
+        <add id="Bss_AdminActionLog::action_log" title="Action Logs Grid" translate="title" module="Bss_AdminActionLog" sortOrder="0" resource="Bss_AdminActionLog::action_log" parent="Bss_AdminActionLog::log" action="bssadmin/actionlog/grid"/>
+
+        <add id="Bss_AdminActionLog::login_log" title="Login Action Grid" translate="title" module="Bss_AdminActionLog" sortOrder="1" resource="Bss_AdminActionLog::login_log" parent="Bss_AdminActionLog::log" action="bssadmin/loginlog/grid"/>
+
+        <add id="Bss_AdminActionLog::visit_log" title="Page Visit History" translate="title" module="Bss_AdminActionLog" sortOrder="2" resource="Bss_AdminActionLog::visit_log" parent="Bss_AdminActionLog::log" action="bssadmin/visit/grid"/>
+
+        <add id="Bss_AdminActionLog::active_session_log" title="Active Sessions" translate="title" module="Bss_AdminActionLog" sortOrder="3" resource="Bss_AdminActionLog::active_session_log" parent="Bss_AdminActionLog::log" action="bssadmin/active/grid"/>
+
+        <add id="Bss_AdminActionLog::config" title="Config System" translate="title" module="Bss_AdminActionLog" sortOrder="10" resource="Bss_AdminActionLog::config" parent="Bss_AdminActionLog::log" action="adminhtml/system_config/edit/section/action_log_bss/"/>
+    </menu>
+</config>

@@ -1,0 +1,146 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_AdminActionLog
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+?>
+<?php
+
+$log = $block->getLog();
+$customer = $block->getUser($log->getUserId());
+$log_details = $block->getDetails();
+$number = count($log_details);
+
+?>
+<?php if ($log): ?>
+    <div class="log-gid">
+        <p class="row">
+            <span class="label"><?php echo __('Date:')?></span>
+            <span class="value"><?php echo $block->getCreatedAt() ?></span>
+        </p>
+        <p class="row">
+            <span class="label"><?php echo __('Username:')?></span>
+            <span class="value"><?php echo $log->getUserName() ?></span>
+        </p>
+        <p class="row">
+            <span class="label"><?php echo __('Full name:')?></span>
+            <span class="value"><?php echo $customer->getFirstname().' '.$customer->getLastname() ?></span>
+        </p>
+        <p class="row">
+            <span class="label"><?php echo __('Email:')?></span>
+            <span class="value"><?php echo $customer->getEmail() ?></span>
+        </p>
+        <p class="row">
+            <span class="label"><?php echo __('Action Type:')?></span>
+            <span class="value"><?php echo ucfirst($log->getActionType()) ?></span>
+        </p>
+        <p class="row">
+            <span class="label"><?php echo __('Object:')?></span>
+            <span class="value"><?php echo $log->getGroupAction() ?></span>
+        </p>
+        <p class="row">
+            <span class="label"><?php echo __('Item:')?></span>
+            <span class="value"><?php echo $log->getInfo() ?></span>
+        </p>
+    </div>
+    <?php if ($log->getActionType()  != 'view' && $number): ?>
+        <div class="log-details">
+            <?php if ( $log->getGroupAction() == 'System Configuration' && !$log->getRevert()): ?>
+                <a href="<?php echo $block->getUrlRevert() ?>" title="<?php echo __('Revert') ?>" id="revert" class ="button-revert action-primary">
+                    <span>
+                        <?php echo __('Revert') ?>
+                    </span>
+                </a>
+            <?php endif ?>
+            <table class="view_details">
+                <thead>
+                    <tr>
+                        <th><?php echo __('Name')?></th>
+                        <th><?php echo __('Old Value')?></th>
+                        <th><?php echo __('New Value')?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php $source_data = true;?>
+                <?php $mess_diff = true;?>
+                <?php foreach ($log_details as $log_detail): ?>
+                    <?php if ($log_detail->getSourceData() && $source_data ): ?>
+                        <tr><td  class="sourcedata" colspan="3"><?php echo $log_detail->getSourceData() ?></td></tr>
+                        <?php $source_data = false; ?>
+                    <?php endif ?>
+                    
+                    <?php $new_value = json_decode($log_detail->getNewValue(), true); ?>
+                    <?php $old_value = json_decode($log_detail->getOldValue(), true); ?>
+                        <?php if (isset($new_value['_create']) && $mess_diff): ?>
+                            <tr>
+                                <td class="mess-diff" colspan="3">
+                                    <?php echo __('N/A'); ?>
+                                </td>
+                            </tr>
+                        <?php endif ?>
+                        <?php if (isset($new_value['_delete']) && $mess_diff): ?>
+                            <tr>
+                                <td class="mess-diff" colspan="3">
+                                    <?php echo __('The item was deleted'); ?>
+                                </td>
+                            </tr>
+                        <?php endif ?>
+                        <?php if (isset($new_value['_no_change']) && $mess_diff): ?>
+                            <tr>
+                                <td class="mess-diff" colspan="3">
+                                    <?php echo __('No changes'); ?>
+                                </td>
+                            </tr>
+                        <?php endif ?>
+                        <?php 
+                            if (isset($new_value['_create']) 
+                                || isset($new_value['_delete']) 
+                                || isset($new_value['_no_change'])
+                            ) {
+                                $new_value = [];
+                                $mess_diff = false;
+                            }
+                         ?>
+                        <?php foreach ($new_value as $k => $value): ?>
+                            <?php 
+                                $source = $k;
+                                if (strpos($source, '_scope_') !== false) {
+                                    $source = substr_replace($source,'',strpos($source, '_scope_'),strlen($source));
+                                }
+                            ?>
+                            <?php if (isset($old_value[$k]) && $old_value[$k] !=''): ?>
+                                <?php
+                                    $result = $block->getDecoratedDiff($old_value[$k], $value);
+                                ?>
+                                <tr>
+                                    <td class="path"><p><?php echo $source ?></p></td>
+                                    <td class="oldvalue"><p><?php echo $result['old'] ?></p></td>
+                                    <td class="newvalue"><p><?php echo $result['new'] ?></p></td>
+                                </tr>
+                            <?php else: ?>
+                                <tr>
+                                    <td class="path"><p><?php echo $source ?></p></td>
+                                    <td class="oldvalue"><p><?php echo isset($old_value[$k])? $old_value[$k] :'' ?></p></td>
+                                    <td class="newvalue"><p><?php echo $value ?></p></td>
+                                </tr>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif ?>
+<?php endif ?>

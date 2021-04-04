@@ -1,0 +1,65 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_AdminActionLog
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+?>
+<?php
+
+$visit = $block->getVisit();
+$visitpages = $block->getVisitDetail();
+
+?>
+<div class="session-active-info">
+    <p class="">
+        <label><?php echo __('Username:')?></label>
+        <span><?php echo $visit->getUserName() ?></span>
+    </p>
+    <p class="">
+        <label><?php echo __('Full Name:')?></label>
+        <span><?php echo $visit->getName() ?></span>
+    </p>
+    <p class="">
+        <label><?php echo __('IP Address:')?></label>
+        <span><?php echo $visit->getIpAddress() ?></span>
+    </p>
+    <p class="">
+        <label><?php echo __('Session Start:')?></label>
+       <span><?php echo $block->formatTimeSession($visit->getSessionStart()) ?></span>
+    </p>
+    <p class="">
+        <label><?php echo __('Session End:')?></label>
+        <span><?php echo $block->formatTimeSession($visit->getSessionEnd()) ?></span>
+    </p>
+</div>
+<table class="page-visit-detail">
+    <thead>
+        <tr>
+            <th><?php echo __('Page Name')?></th>
+            <th><?php echo __('Page Url')?></th>
+            <th><?php echo __('Stay Duration')?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($visitpages as $page): ?>
+            <tr>
+                <td><?php echo $page->getPageName() ?></td>
+                <td><?php echo $page->getPageUrl() ?></td>
+                <td><?php echo $page->getStayDuration() ?>&nbsp;<?php echo __('seconds') ?></td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>

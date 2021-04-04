@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* @category   BSS
+* @package    Bss_AdminActionLog
+* @author     Extension Team
+* @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Bss\AdminActionLog\Model\ResourceModel\ActionGrid\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_admin_action_log</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\ActionGrid</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Bss\AdminActionLog\Model\ResourceModel\Login\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_admin_login_log</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\Login</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Bss\AdminActionLog\Model\ResourceModel\Visit\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_admin_visit_log</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\Visit</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Bss\AdminActionLog\Model\ResourceModel\SessionActive\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_admin_active_log</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\SessionActive</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="actionlog_grid_data_source" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\ActionGrid\Grid\Collection</item>
+                <item name="loginlog_grid_data_source" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\Login\Grid\Collection</item>
+                <item name="visit_grid_data_source" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\Visit\Grid\Collection</item>
+                <item name="active_grid_data_source" xsi:type="string">Bss\AdminActionLog\Model\ResourceModel\SessionActive\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
